@@ -34,3 +34,7 @@ Personalización
 Puedes ajustar los valores de referencia de Black_Line para adaptarlos a diferentes condiciones de iluminación y tipos de superficies. 
 Además, puedes modificar las constantes de dirección (Forward, Backward, etc.) para ajustar el comportamiento del robot según tus necesidades.
 
+
+![image](https://github.com/user-attachments/assets/41d1be72-578c-4e11-bfd3-d2576b58faa6)
+
+
