@@ -52,3 +52,6 @@ Este algoritmo es una implementación básica pero efectiva de navegación autó
 El uso de un sensor ultrasónico combinado con un servomotor permite al robot evaluar su entorno y tomar decisiones en tiempo real para evitar obstáculos, mejorando su capacidad de moverse de forma autónoma y segura.
 
 ## Diagrama de Flujo
+
+![image](https://github.com/user-attachments/assets/3f3b53a3-437f-4546-a4b6-f4f9dfe7a89a)
+
