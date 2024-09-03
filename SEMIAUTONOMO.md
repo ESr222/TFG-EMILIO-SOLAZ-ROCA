@@ -30,8 +30,8 @@ El ESP32 actúa como un servidor web, donde puedes acceder a una interfaz con bo
 ## Instalación
 
 1. Clona este repositorio en tu máquina local.
-2. Abre el código `ESP32_Control_Robot.ino` en el IDE de Arduino y cárgalo en la ESP32.
-3. Abre el código `ArduinoUno_Control_Motores.ino` en el IDE de Arduino y cárgalo en el Arduino Uno.
+2. Abre el código `ESP32_Wifi` en el IDE de Arduino y cárgalo en la ESP32.
+3. Abre el código `ArduinoUno_Wifi` en el IDE de Arduino y cárgalo en el Arduino Uno.
 
 ## Uso
 
