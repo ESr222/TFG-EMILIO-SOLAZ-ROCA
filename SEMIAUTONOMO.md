@@ -39,4 +39,6 @@ El ESP32 actúa como un servidor web, donde puedes acceder a una interfaz con bo
 2. Abre un navegador web y accede a la dirección IP de la ESP32.
 3. Usa la interfaz web para controlar el robot.
 
+## Driagrama de flujo
+
 ![image](https://github.com/user-attachments/assets/b0d15d54-eb25-4ec4-8844-08cf217788ac)
