@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/73259cbf-a138-4a39-8d92-3fcaa0cdeec9)# Control de Robot con WiFi usando ESP32 y Arduino Uno
+# Control de Robot con WiFi usando ESP32 y Arduino Uno
 
 Este proyecto permite controlar un robot con ruedas mecanum utilizando un ESP32 como servidor web para enviar comandos al Arduino Uno, que controla los motores del robot.
 
