@@ -1,4 +1,4 @@
-# Navegación Autónoma
+##gación Autónoma
 
 Este código implementa un sistema de navegación autónoma utilizando un robot que puede detectar y evitar obstáculos. Para lograrlo, se emplea un sensor ultrasónico SR04, un servomotor y un sistema de control de motores basado en un chip 74HCT595N. El objetivo del algoritmo es permitir que el robot se desplace de manera segura evitando colisiones.
 Componentes Principales
