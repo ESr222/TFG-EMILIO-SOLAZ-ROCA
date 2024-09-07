@@ -1,9 +1,9 @@
-#include <WiFi.h>
-#include <WebServer.h>
+#include <WiFi.h>       // Librería para la conectividad WiFi
+#include <WebServer.h>  // Librería para crear un servidor web
 
 // Configuración de la red WiFi
-const char* ssid = "iPhone de Emilio";           // Reemplaza con el nombre de tu red WiFi
-const char* password = "12345678"; // Reemplaza con la contraseña de tu red WiFi
+const char* ssid = "Tu_SSID";           // Nombre de la red WiFi
+const char* password = "Tu_Contraseña"; // Contraseña de la red WiFi
 
 // Crear una instancia del servidor web en el puerto 80
 WebServer server(80);
@@ -13,7 +13,7 @@ WebServer server(80);
 #define TX_PIN 17 // GPIO17 (TX del ESP32)
 
 // Inicializar HardwareSerial (UART2)
-HardwareSerial mySerial(2); // UART2
+HardwareSerial mySerial(2); // Configurar UART2 para la comunicación serial
 
 void setup() {
   // Inicializar Serial para depuración
@@ -21,7 +21,7 @@ void setup() {
   delay(1000);
   Serial.println("Iniciando ESP32...");
 
-  // Iniciar conexión WiFi antes de inicializar la comunicación serial
+  // Conectarse a la red WiFi
   WiFi.begin(ssid, password);
   Serial.print("Conectando a WiFi ");
   while (WiFi.status() != WL_CONNECTED) {
@@ -43,6 +43,8 @@ void setup() {
   server.on("/left", handleLeft);
   server.on("/right", handleRight);
   server.on("/stop", handleStop);
+  server.on("/rotate_right", handleRotateRight);  // Añadir rotación derecha
+  server.on("/rotate_left", handleRotateLeft);    // Añadir rotación izquierda
 
   // Iniciar el servidor web
   server.begin();
@@ -53,7 +55,7 @@ void loop() {
   server.handleClient(); // Atender peticiones del cliente
 }
 
-// Función para manejar la ruta raíz "/"
+// Función para manejar la ruta raíz "/" (página principal)
 void handleRoot() {
   String html = "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Control del Robot</title></head><body>";
   html += "<h1>Control del Robot</h1>";
@@ -61,38 +63,58 @@ void handleRoot() {
   html += "<button onclick=\"window.location.href='/backward'\">Atrás</button><br><br>";
   html += "<button onclick=\"window.location.href='/left'\">Izquierda</button><br><br>";
   html += "<button onclick=\"window.location.href='/right'\">Derecha</button><br><br>";
+  html += "<button onclick=\"window.location.href='/rotate_left'\">Girar en el lugar Izquierda</button><br><br>";  // Botón para rotar a la izquierda
+  html += "<button onclick=\"window.location.href='/rotate_right'\">Girar en el lugar Derecha</button><br><br>";  // Botón para rotar a la derecha
   html += "<button onclick=\"window.location.href='/stop'\">Detener</button>";
   html += "</body></html>";
   server.send(200, "text/html", html);
 }
 
-// Funciones para manejar las acciones de control
+// Función para enviar comando de avanzar al Arduino
 void handleForward() {
   mySerial.write('F');  // Enviar el comando 'F' al Arduino Uno
   Serial.println("Enviado: F (Adelante)");
   server.send(200, "text/html", "Movimiento Adelante");
 }
 
+// Función para enviar comando de retroceder al Arduino
 void handleBackward() {
   mySerial.write('B');  // Enviar el comando 'B' al Arduino Uno
   Serial.println("Enviado: B (Atrás)");
   server.send(200, "text/html", "Movimiento Atrás");
 }
 
+// Función para enviar comando de girar a la izquierda al Arduino
 void handleLeft() {
   mySerial.write('L');  // Enviar el comando 'L' al Arduino Uno
   Serial.println("Enviado: L (Izquierda)");
   server.send(200, "text/html", "Movimiento Izquierda");
 }
 
+// Función para enviar comando de girar a la derecha al Arduino
 void handleRight() {
   mySerial.write('R');  // Enviar el comando 'R' al Arduino Uno
   Serial.println("Enviado: R (Derecha)");
   server.send(200, "text/html", "Movimiento Derecha");
 }
 
+// Función para enviar comando de detenerse al Arduino
 void handleStop() {
   mySerial.write('S');  // Enviar el comando 'S' al Arduino Uno
   Serial.println("Enviado: S (Detener)");
   server.send(200, "text/html", "Movimiento Detenido");
+}
+
+// Función para rotar el robot a la derecha
+void handleRotateRight() {
+  mySerial.write('D');  // Enviar el comando 'D' al Arduino Uno para rotar a la derecha
+  Serial.println("Enviado: D (Rotación Derecha)");
+  server.send(200, "text/html", "Rotación Derecha");
+}
+
+// Función para rotar el robot a la izquierda
+void handleRotateLeft() {
+  mySerial.write('G');  // Enviar el comando 'G' al Arduino Uno para rotar a la izquierda
+  Serial.println("Enviado: G (Rotación Izquierda)");
+  server.send(200, "text/html", "Rotación Izquierda");
 }
